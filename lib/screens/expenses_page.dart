@@ -1,4 +1,4 @@
-import 'package:expense_tracker_app/screens/settings_page.dart';
+import 'package:expense_tracker_app/components/new_expense.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/models/expenses_model.dart';
 import 'package:expense_tracker_app/components/expenses_list.dart';
@@ -19,7 +19,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              showModalBottomSheet(context: context, builder: (ctx) => const Text("lol"),);
+              showModalBottomSheet(context: context, builder: (ctx) => const NewExpense(),);
             },
             icon: const Padding(
               padding: EdgeInsets.only(right: 10),
