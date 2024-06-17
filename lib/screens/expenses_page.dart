@@ -11,6 +11,13 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<ExpensesPage> {
+  
+  void saveExpense(ExpensesModel expense) {
+    setState(() {
+      registeredExpenses.add(expense);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +26,12 @@ class _ExpensesPageState extends State<ExpensesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              showModalBottomSheet(context: context, builder: (ctx) => const NewExpense(),);
+              showModalBottomSheet(
+                context: context,
+                builder: (ctx) => NewExpense(
+                  onAddExpense: saveExpense,
+                ),
+              );
             },
             icon: const Padding(
               padding: EdgeInsets.only(right: 10),
