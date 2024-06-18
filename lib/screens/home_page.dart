@@ -1,6 +1,5 @@
 import 'package:expense_tracker_app/screens/expenses_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,23 +7,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Column(
         children: [
-          Image.asset('assets/home_page_logo.png'),
-          const SizedBox(
-            height: 50,
+          Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: Image.asset('assets/home_page_logo.png'),
           ),
           SizedBox(
             height: 315,
             width: 350,
             child: Text(
               'Get more from your Money',
-              style: GoogleFonts.poppins(
-                fontWeight: FontWeight.w900,
-                fontSize: 60,
-                color: const Color.fromARGB(255, 26, 33, 48),
-              ),
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ),
           Padding(

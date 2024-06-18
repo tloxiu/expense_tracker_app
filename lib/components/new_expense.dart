@@ -142,7 +142,7 @@ class _NewExpenseState extends State<NewExpense> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 100,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -152,9 +152,11 @@ class _NewExpenseState extends State<NewExpense> {
                   backgroundColor: const Color.fromARGB(255, 122, 178, 178),
                   foregroundColor: Colors.white,
                 ),
-                onPressed: checkAndSubmitForm,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: const Text(
-                  'Submit',
+                  'Cancel',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
@@ -166,11 +168,9 @@ class _NewExpenseState extends State<NewExpense> {
                   backgroundColor: const Color.fromARGB(255, 122, 178, 178),
                   foregroundColor: Colors.white,
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: checkAndSubmitForm,
                 child: const Text(
-                  'Cancel',
+                  'Submit',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

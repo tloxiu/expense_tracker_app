@@ -10,10 +10,11 @@ class ExpensesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: const Color.fromARGB(255, 122, 178, 178),
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: Padding(
         padding: const EdgeInsets.all(18),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               expense.title,
