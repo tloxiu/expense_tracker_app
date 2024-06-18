@@ -8,28 +8,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       body: Column(
         children: [
-          Stack(
-            children: [
-              Positioned(
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    color: const Color.fromARGB(34, 187, 52, 208),
-                    width: 350,
-                    height: 410,
-                  ),
-                ),
-              ),
-              Positioned(
-                width: 430,
-                top: 30,
-                right: 5,
-                child: Image.asset('assets/home_page_logo.png'),
-              ),
-            ],
-          ),
+          Image.asset('assets/home_page_logo.png'),
           const SizedBox(
             height: 50,
           ),
@@ -39,7 +21,10 @@ class HomePage extends StatelessWidget {
             child: Text(
               'Get more from your Money',
               style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w900, fontSize: 60),
+                fontWeight: FontWeight.w900,
+                fontSize: 60,
+                color: const Color.fromARGB(255, 26, 33, 48),
+              ),
             ),
           ),
           Padding(
@@ -50,7 +35,7 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 70,
               decoration: BoxDecoration(
-                color: Colors.yellow[400],
+                color: const Color.fromARGB(255, 122, 178, 178),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: IconButton(
@@ -65,6 +50,7 @@ class HomePage extends StatelessWidget {
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 30,
+                  color: Colors.white,
                 ),
               ),
             ),

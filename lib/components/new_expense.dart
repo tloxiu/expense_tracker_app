@@ -23,6 +23,7 @@ class _NewExpenseState extends State<NewExpense> {
     super.dispose();
   }
 
+  // Async - await function knows that variable will be stored in the future by the user, not immediately.
   void _showDatePicker() async {
     DateTime firstDate = DateTime.now().subtract(const Duration(days: 365));
     DateTime lastDate = DateTime.now();
@@ -47,7 +48,7 @@ class _NewExpenseState extends State<NewExpense> {
         builder: (context) => AlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
-              'Please make sure a valid title, amount, date and category was entered'),
+              'Please make sure a valid title, amount, date and category was entered.'),
           actions: [
             TextButton(
                 onPressed: () {
@@ -59,19 +60,24 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return;
     }
-    widget.onAddExpense(ExpensesModel(
-        title: _titleController.text,
-        amount: enteredAmount,
-        date: selectedDate!,
-        category: selectedCategory));
+
+    // Widget property works only in stateful widget 'state' class. It helps with referencing to the function that was passed in.
+    widget.onAddExpense(
+      ExpensesModel(
+          title: _titleController.text,
+          amount: enteredAmount,
+          date: selectedDate!,
+          category: selectedCategory),
+    );
+
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(16, 80, 16, 16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TextField(
             controller: _titleController,
@@ -81,7 +87,6 @@ class _NewExpenseState extends State<NewExpense> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: TextField(
@@ -108,6 +113,9 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
               )
             ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -140,20 +148,34 @@ class _NewExpenseState extends State<NewExpense> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 122, 178, 178),
+                  foregroundColor: Colors.white,
+                ),
                 onPressed: checkAndSubmitForm,
-                child: const Text('Submit'),
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 width: 15,
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 122, 178, 178),
+                  foregroundColor: Colors.white,
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text('Cancel'),
+                child: const Text(
+                  'Cancel',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

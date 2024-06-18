@@ -12,35 +12,58 @@ class ExpensesPage extends StatefulWidget {
 
 class _ExpensesPageState extends State<ExpensesPage> {
   
-  void saveExpense(ExpensesModel expense) {
+  void addExpense(ExpensesModel expense) {
     setState(() {
       registeredExpenses.add(expense);
+    });
+  }
+
+  void deleteExpense(ExpensesModel expense) {
+    setState(() {
+      registeredExpenses.remove(expense);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 238, 238, 238),
       appBar: AppBar(
-        title: const Text("Hello Roksana!"),
+        backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+        title: const Text(
+          "Hello Roksana!",
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            color: Color.fromARGB(255, 26, 33, 48),
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
               showModalBottomSheet(
+                backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+                isScrollControlled: true,
                 context: context,
                 builder: (ctx) => NewExpense(
-                  onAddExpense: saveExpense,
+                  onAddExpense: addExpense,
                 ),
               );
             },
             icon: const Padding(
               padding: EdgeInsets.only(right: 10),
-              child: Icon(Icons.add),
+              child: Icon(
+                Icons.add,
+                color: Color.fromARGB(255, 26, 33, 48),
+                size: 30,
+              ),
             ),
           ),
         ],
       ),
-      body: ExpensesList(expenses: registeredExpenses),
+      body: ExpensesList(
+        expenses: registeredExpenses,
+        onDeleteExpense: deleteExpense,
+      ),
     );
   }
 }
