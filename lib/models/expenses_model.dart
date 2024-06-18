@@ -34,12 +34,19 @@ class ExpensesModel {
   }
 }
 
+
+
 class ExpenseBucket {
   const ExpenseBucket({required this.category, required this.expenses});
+
+  // Filtering expenses by category
+  ExpenseBucket.forCategory(List<ExpensesModel> allExpenses, this.category)
+      : expenses = allExpenses.where((expense) => expense.category == category).toList();
 
   final Category category;
   final List<ExpensesModel> expenses;
 
+  // That's the getter'
   double get totalExpenses {
     double sum = 0;
 
@@ -49,6 +56,8 @@ class ExpenseBucket {
     return sum;
   }
 }
+
+
 
 final List<ExpensesModel> registeredExpenses = [
   ExpensesModel(

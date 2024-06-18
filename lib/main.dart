@@ -12,7 +12,6 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       // Light theme
       theme: ThemeData(
         colorScheme: const ColorScheme.light(
@@ -36,6 +35,7 @@ class MainApp extends StatelessWidget {
               ),
             ),
       ),
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       home: const HomePage(),
     );

@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/components/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/components/new_expense.dart';
 import 'package:expense_tracker_app/models/expenses_model.dart';
@@ -77,14 +78,25 @@ class _ExpensesPageState extends State<ExpensesPage> {
           ),
         ],
       ),
-      body: registeredExpenses.isNotEmpty
-          ? ExpensesList(
-              expenses: registeredExpenses,
-              onDeleteExpense: deleteExpense,
-            )
-          : const Center(
-              child: Text('No expenses found!'),
-            ),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Chart(expenses: registeredExpenses),
+          ),
+          Expanded(
+            flex: 2,
+            child: registeredExpenses.isNotEmpty
+                ? ExpensesList(
+                    expenses: registeredExpenses,
+                    onDeleteExpense: deleteExpense,
+                  )
+                : const Center(
+                    child: Text('No expenses found!'),
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
