@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker_app/components/chart_bar.dart';
 import 'package:expense_tracker_app/models/expenses_model.dart';
 
+
+
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.expenses});
 
@@ -19,14 +21,17 @@ class Chart extends StatelessWidget {
   double get maxTotalExpense {
     double maxTotalExpense = 0;
 
+    // Checking the biggest bucket category list
     for (final bucket in buckets) {
-      if (bucket.totalExpenses > maxTotalExpense) {
-        maxTotalExpense = bucket.totalExpenses;
+      if (bucket.calculateTotalExpenses() > maxTotalExpense) {
+        maxTotalExpense = bucket.calculateTotalExpenses();
       }
     }
 
     return maxTotalExpense;
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +52,12 @@ class Chart extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                for (final bucket in buckets) // alternative to map()
+                // Creating a bucket for every bucket in buckets getter (list)
+                for (final bucket in buckets) // or .map
                   ChartBar(
-                    fill: bucket.totalExpenses == 0
+                    fill: bucket.calculateTotalExpenses() == 0
                         ? 0
-                        : bucket.totalExpenses / maxTotalExpense,
+                        : bucket.calculateTotalExpenses() / maxTotalExpense,
                   )
               ],
             ),
@@ -59,7 +65,7 @@ class Chart extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: buckets
-                .map(
+                .map( // or for in
                   (bucket) => Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -70,7 +76,7 @@ class Chart extends StatelessWidget {
                   ),
                 )
                 .toList(),
-          )
+          ),
         ],
       ),
     );

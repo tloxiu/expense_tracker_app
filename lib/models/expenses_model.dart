@@ -15,6 +15,8 @@ const categoryIcons = {
 
 const uuid = Uuid();
 
+
+
 class ExpensesModel {
   ExpensesModel(
       {required this.title,
@@ -36,18 +38,20 @@ class ExpensesModel {
 
 
 
+// Class for the chart and the 'category list'
 class ExpenseBucket {
   const ExpenseBucket({required this.category, required this.expenses});
 
-  // Filtering expenses by category
+  // Filtering by category, allExpenses that were filtered by '.where' will be assign to expenses, so we can have different lists with each category.
   ExpenseBucket.forCategory(List<ExpensesModel> allExpenses, this.category)
-      : expenses = allExpenses.where((expense) => expense.category == category).toList();
+      : expenses = allExpenses
+            .where((expense) => expense.category == category)
+            .toList();
 
   final Category category;
   final List<ExpensesModel> expenses;
 
-  // That's the getter'
-  double get totalExpenses {
+  double calculateTotalExpenses() {
     double sum = 0;
 
     for (final expense in expenses) {
@@ -59,6 +63,7 @@ class ExpenseBucket {
 
 
 
+// List of all expenses
 final List<ExpensesModel> registeredExpenses = [
   ExpensesModel(
       title: 'Flutter Course',
