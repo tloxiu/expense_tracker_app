@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/main.dart';
 import 'package:expense_tracker_app/screens/expenses_page.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final headlineLargeLarge =
+        Theme.of(context).textTheme.headlineLargeLarge.copyWith(
+              color: brightness == Brightness.dark
+                  ? const Color.fromARGB(255, 238, 238, 238)
+                  : const Color.fromARGB(255, 26, 33, 48),
+            );
+
     return Scaffold(
       body: Column(
         children: [
@@ -18,7 +27,7 @@ class HomePage extends StatelessWidget {
             width: 350,
             child: Text(
               'Get more from your Money',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineLargeLarge,
             ),
           ),
           Padding(
@@ -44,7 +53,7 @@ class HomePage extends StatelessWidget {
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 30,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 238, 238, 238),
                 ),
               ),
             ),

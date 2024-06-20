@@ -53,13 +53,14 @@ class _ExpensesPageState extends State<ExpensesPage> {
       appBar: AppBar(
         title: const Text(
           "Hello Roksana!",
-          style: TextStyle(),
         ),
         actions: [
           IconButton(
             onPressed: () {
               showModalBottomSheet(
-                backgroundColor: const Color.fromARGB(255, 238, 238, 238),
+                backgroundColor: Theme.of(context).brightness == Brightness.dark
+                    ? const Color.fromARGB(255, 26, 33, 48)
+                    : const Color.fromARGB(255, 238, 238, 238),
                 isScrollControlled: true,
                 context: context,
                 builder: (ctx) => NewExpense(
@@ -71,7 +72,6 @@ class _ExpensesPageState extends State<ExpensesPage> {
               padding: EdgeInsets.only(right: 10),
               child: Icon(
                 Icons.add,
-                color: Color.fromARGB(255, 26, 33, 48),
                 size: 30,
               ),
             ),
