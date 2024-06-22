@@ -12,6 +12,7 @@ class ExpensesPage extends StatefulWidget {
 }
 
 class _ExpensesPageState extends State<ExpensesPage> {
+
   void addExpense(ExpensesModel expense) {
     setState(() {
       registeredExpenses.add(expense);
@@ -58,6 +59,7 @@ class _ExpensesPageState extends State<ExpensesPage> {
           IconButton(
             onPressed: () {
               showModalBottomSheet(
+                useSafeArea: true,
                 backgroundColor: Theme.of(context).brightness == Brightness.dark
                     ? const Color.fromARGB(255, 26, 33, 48)
                     : const Color.fromARGB(255, 238, 238, 238),

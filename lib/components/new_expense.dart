@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/models/expenses_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
@@ -43,9 +44,9 @@ class _NewExpenseState extends State<NewExpense> {
     if (_titleController.text.trim().isEmpty ||
         amountIsInvalid ||
         selectedDate == null) {
-      showDialog(
+      showCupertinoDialog(
         context: context,
-        builder: (context) => AlertDialog(
+        builder: (context) => CupertinoAlertDialog(
           title: const Text('Invalid input'),
           content: const Text(
               'Please make sure a valid title, amount, date and category was entered.'),
@@ -76,7 +77,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 80, 16, 16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           TextField(
