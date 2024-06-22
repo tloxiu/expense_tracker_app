@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
+    // ignore: unused_local_variable
     final headlineLargeLarge =
         Theme.of(context).textTheme.headlineLargeLarge.copyWith(
               color: brightness == Brightness.dark

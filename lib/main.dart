@@ -1,6 +1,7 @@
 import 'package:expense_tracker_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 extension CustomTextTheme on TextTheme {
   TextStyle get headlineLargeLarge => GoogleFonts.poppins(
@@ -10,9 +11,15 @@ extension CustomTextTheme on TextTheme {
 }
 
 void main() {
-  runApp(
-    const MainApp(),
-  );
+  // Locking app with portraitUp orientation for responsiveness 
+  WidgetsFlutterBinding.ensureInitialized(); 
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((function) {
+    runApp(
+      const MainApp(),
+    );
+  });
 }
 
 class MainApp extends StatelessWidget {
